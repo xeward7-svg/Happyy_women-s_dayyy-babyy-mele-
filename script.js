@@ -8,7 +8,7 @@ document.getElementById("loader").style.display="none"
 
 }
 
-/* Dark Mode */
+/* Dark mode */
 
 function toggleMode(){
 
@@ -34,15 +34,13 @@ heart.innerHTML="💖"
 
 heart.style.left=Math.random()*100+"vw"
 
-heart.style.animationDuration=(2+Math.random()*3)+"s"
-
 container.appendChild(heart)
 
 setTimeout(()=>{
 
 heart.remove()
 
-},4000)
+},3000)
 
 }
 
@@ -56,7 +54,11 @@ let song=document.getElementById("song")
 
 if(song.paused){
 
-song.play()
+song.play().catch(()=>{
+
+alert("Tap again to play music 🎵")
+
+})
 
 }else{
 
@@ -84,7 +86,7 @@ alert("Wrong password 🥺")
 
 }
 
-/* Surprise popup */
+/* Popup */
 
 setTimeout(function(){
 
@@ -98,9 +100,11 @@ document.getElementById("surprisePopup").style.display="none"
 
 }
 
-/* Tap anywhere hearts */
+/* Tap hearts (not on buttons) */
 
 document.addEventListener("click",function(e){
+
+if(e.target.tagName==="BUTTON") return
 
 let heart=document.createElement("div")
 
@@ -109,7 +113,6 @@ heart.className="tap-heart"
 heart.innerHTML="💖"
 
 heart.style.left=e.clientX+"px"
-
 heart.style.top=e.clientY+"px"
 
 document.body.appendChild(heart)
